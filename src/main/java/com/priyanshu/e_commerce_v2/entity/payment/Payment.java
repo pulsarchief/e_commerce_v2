@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import com.priyanshu.e_commerce_v2.entity.order.Orders;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -27,9 +28,10 @@ public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long paymentId;
+    Long id;
 
-    UUID transactionId = UUID.randomUUID();
+    @Column(nullable = false, unique = true, updatable = false)
+    UUID paymentId = UUID.randomUUID();
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "payment")
     Orders order;

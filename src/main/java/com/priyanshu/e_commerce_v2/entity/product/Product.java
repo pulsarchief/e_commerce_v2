@@ -2,9 +2,11 @@ package com.priyanshu.e_commerce_v2.entity.product;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 
 import com.priyanshu.e_commerce_v2.entity.orderItem.OrderItem;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +28,9 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
+    @Column(nullable = false, unique = true, updatable = false)
+    UUID productId = UUID.randomUUID();
 
     String name;
 

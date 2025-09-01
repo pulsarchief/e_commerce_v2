@@ -3,6 +3,7 @@ package com.priyanshu.e_commerce_v2.entity.order;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -12,6 +13,7 @@ import com.priyanshu.e_commerce_v2.entity.payment.Payment;
 import com.priyanshu.e_commerce_v2.entity.user.Users;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -39,7 +41,10 @@ public class Orders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long orderId;
+    Long id;
+
+    @Column(nullable = false, unique = true, updatable = false)
+    UUID orderId = UUID.randomUUID();
 
     @CreationTimestamp
     LocalDateTime createdAt;
@@ -67,13 +72,9 @@ public class Orders {
 
     @PrePersist
     @PreUpdate
-    private void calculateTotals() {
+    private void fieldUpdates() {
         this.totalItems = products.stream().mapToInt(OrderItem::getQuantity).sum();
-    }
-
-    @PreUpdate
-    @PrePersist
-    private void calculatePrice() {
         this.price = products.stream().map(x -> x.getTotalPrice()).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
+
 }

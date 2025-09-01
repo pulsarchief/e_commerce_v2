@@ -2,6 +2,7 @@ package com.priyanshu.e_commerce_v2.entity.user;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import com.priyanshu.e_commerce_v2.entity.order.Orders;
 
@@ -29,9 +30,12 @@ public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long userId;
+    Long id;
 
-    @Column(unique = true)
+    @Column(nullable = false, unique = true, updatable = false)
+    UUID userId = UUID.randomUUID();
+
+    @Column(unique = true, updatable = false)
     String username;
 
     @Column(unique = true)
