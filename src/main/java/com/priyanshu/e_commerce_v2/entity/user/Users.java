@@ -47,7 +47,7 @@ public class Users {
     @Enumerated(value = EnumType.STRING)
     UserRole role = UserRole.USER;
 
-    Boolean archived = false;
+    Boolean enabled = true;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     List<Orders> orders = new ArrayList<>();

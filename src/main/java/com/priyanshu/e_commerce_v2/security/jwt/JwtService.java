@@ -5,10 +5,10 @@ import java.util.Date;
 import javax.crypto.SecretKey;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.priyanshu.e_commerce_v2.exception.AccountDisabledException;
+import com.priyanshu.e_commerce_v2.security.CustomUserDetails;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -22,7 +22,7 @@ public class JwtService {
     @Value("${jwt.timeout}")
     private Long jwtTimeout;
 
-    public String createJwtToken(UserDetails userDetails) {
+    public String createJwtToken(CustomUserDetails userDetails) {
 
         if (!userDetails.isEnabled()) {
             throw new AccountDisabledException("Your Account Is Disabled Please Contact Support");

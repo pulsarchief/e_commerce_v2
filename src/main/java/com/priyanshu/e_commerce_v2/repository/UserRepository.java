@@ -10,7 +10,7 @@ import com.priyanshu.e_commerce_v2.entity.user.Users;
 
 public interface UserRepository extends JpaRepository<Users, Long>, JpaSpecificationExecutor<Users> {
 
-    Optional<Users> findByUsernameAndArchivedFalse(String username);
+    Optional<Users> findByUsernameAndEnabledTrue(String username);
 
     @EntityGraph(attributePaths = { "orders", "userImage" })
     Optional<Users> findWithDetailsById(Long id);

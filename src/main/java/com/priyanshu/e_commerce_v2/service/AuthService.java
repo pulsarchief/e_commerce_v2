@@ -49,7 +49,7 @@ public class AuthService {
         return response;
     }
 
-    public String createJwt(UserDetails userDetails) {
+    public String createJwt(CustomUserDetails userDetails) {
 
         return jwtService.createJwtToken(userDetails);
 

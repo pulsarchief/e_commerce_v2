@@ -31,20 +31,20 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handlePasswordMismatchException(PasswordMismatchException exception,
             HttpServletRequest request) {
 
-        ErrorResponse response = responseMappers.toErrorResponse(HttpStatus.NOT_FOUND, exception.getMessage(),
+        ErrorResponse response = responseMappers.toErrorResponse(HttpStatus.UNAUTHORIZED, exception.getMessage(),
                 request.getRequestURI());
 
-        return new ResponseEntity<ErrorResponse>(response, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<ErrorResponse>(response, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(AccountDisabledException.class)
     public ResponseEntity<ErrorResponse> handleAccountDisabledException(AccountDisabledException exception,
             HttpServletRequest request) {
 
-        ErrorResponse response = responseMappers.toErrorResponse(HttpStatus.NOT_FOUND, exception.getMessage(),
+        ErrorResponse response = responseMappers.toErrorResponse(HttpStatus.BAD_REQUEST, exception.getMessage(),
                 request.getRequestURI());
 
-        return new ResponseEntity<ErrorResponse>(response, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<ErrorResponse>(response, HttpStatus.BAD_REQUEST);
     }
 
 }
