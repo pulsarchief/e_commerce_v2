@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.priyanshu.e_commerce_v2.exception.AccountDisabledException;
 import com.priyanshu.e_commerce_v2.repository.UserRepository;
 import com.priyanshu.e_commerce_v2.security.CustomUserDetails;
 
@@ -49,6 +50,10 @@ public class JwtFilter extends OncePerRequestFilter {
             String username = jwtService.getUsername(token);
 
             CustomUserDetails userDetails = (CustomUserDetails) userDetailsService.loadUserByUsername(username);
+
+            if (!userDetails.isEnabled()) {
+                throw new AccountDisabledException("Your Account Is Disabled Please Contact Support");
+            }
 
             UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDetails, null,
                     userDetails.getAuthorities());

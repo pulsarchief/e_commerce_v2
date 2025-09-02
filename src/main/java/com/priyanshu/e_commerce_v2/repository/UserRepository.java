@@ -2,6 +2,7 @@ package com.priyanshu.e_commerce_v2.repository;
 
 import java.util.Optional;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
@@ -11,4 +12,6 @@ public interface UserRepository extends JpaRepository<Users, Long>, JpaSpecifica
 
     Optional<Users> findByUsernameAndArchivedFalse(String username);
 
+    @EntityGraph(attributePaths = { "orders", "userImage" })
+    Optional<Users> findWithDetailsById(Long id);
 }

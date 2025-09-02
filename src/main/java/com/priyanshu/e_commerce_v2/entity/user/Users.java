@@ -47,10 +47,10 @@ public class Users {
     @Enumerated(value = EnumType.STRING)
     UserRole role = UserRole.USER;
 
+    Boolean archived = false;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     List<Orders> orders = new ArrayList<>();
-
-    Boolean archived = false;
 
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     UserImageRecord userImage = null;

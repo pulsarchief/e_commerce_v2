@@ -3,7 +3,6 @@ package com.priyanshu.e_commerce_v2.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.priyanshu.e_commerce_v2.entity.user.Users;
@@ -17,7 +16,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) {
 
         Users user = userRepository
                 .findByUsernameAndArchivedFalse(username)
