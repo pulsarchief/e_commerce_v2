@@ -12,8 +12,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -44,9 +42,4 @@ public class OrderItem {
 
     BigDecimal totalPrice;
 
-    @PrePersist
-    @PreUpdate
-    private void totalPrice() {
-        this.totalPrice = BigDecimal.valueOf(quantity).multiply(pricePerUnit);
-    }
 }

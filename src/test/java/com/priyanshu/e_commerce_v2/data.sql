@@ -1,0 +1,102 @@
+-- INSERT INTO
+--     product (name, description, active, price, stock)
+-- VALUES
+--     (
+--         'Laptop Pro',
+--         'High-end laptop for professionals',
+--         true,
+--         1299.99,
+--         10
+--     ),
+--     (
+--         'Smartphone X',
+--         'Latest smartphone with advanced features',
+--         true,
+--         899.99,
+--         25
+--     ),
+--     (
+--         'Wireless Headphones',
+--         'Noise-cancelling over-ear headphones',
+--         true,
+--         199.99,
+--         50
+--     ),
+--     (
+--         'Gaming Mouse',
+--         'Ergonomic mouse with RGB lighting',
+--         true,
+--         49.99,
+--         100
+--     ),
+--     (
+--         'Mechanical Keyboard',
+--         'RGB mechanical keyboard',
+--         true,
+--         89.99,
+--         60
+--     ),
+--     (
+--         '4K Monitor',
+--         'Ultra HD 27-inch monitor',
+--         true,
+--         349.99,
+--         20
+--     ),
+--     (
+--         'USB-C Hub',
+--         'Multiport USB-C hub',
+--         true,
+--         39.99,
+--         80
+--     ),
+--     (
+--         'External SSD',
+--         '1TB portable SSD',
+--         true,
+--         149.99,
+--         30
+--     ),
+--     (
+--         'Bluetooth Speaker',
+--         'Portable Bluetooth speaker',
+--         true,
+--         59.99,
+--         70
+--     ),
+--     (
+--         'Smartwatch',
+--         'Fitness tracking smartwatch',
+--         true,
+--         179.99,
+--         40
+--     ),
+--     (
+--         'Tablet S',
+--         '10-inch Android tablet',
+--         true,
+--         299.99,
+--         35
+--     ),
+--     ('Webcam HD', '1080p USB webcam', true, 69.99, 55),
+--     (
+--         'Wireless Charger',
+--         'Qi-certified fast charger',
+--         true,
+--         29.99,
+--         90
+--     ),
+--     (
+--         'Action Camera',
+--         'Waterproof 4K action camera',
+--         true,
+--         249.99,
+--         15
+--     ),
+--     (
+--         'E-Reader',
+--         '6-inch e-ink e-reader',
+--         true,
+--         119.99,
+--         45
+--     );

@@ -1,9 +1,13 @@
 package com.priyanshu.e_commerce_v2.util.mappers;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.priyanshu.e_commerce_v2.dto.order.AdminOrderSummaryResponse;
+import com.priyanshu.e_commerce_v2.dto.order.OrderDetailedResponse;
 import com.priyanshu.e_commerce_v2.dto.order.OrderSummaryResponse;
+import com.priyanshu.e_commerce_v2.dto.orderItem.OrderItemResponse;
 import com.priyanshu.e_commerce_v2.entity.order.Orders;
 
 @Component
@@ -34,5 +38,24 @@ public class OrderMappers {
         dto.setUpdatedAt(order.getUpdatedAt());
 
         return dto;
+    }
+
+    public OrderDetailedResponse toOrderDetailedResponse(Orders order, List<OrderItemResponse> items) {
+
+        OrderDetailedResponse details = new OrderDetailedResponse();
+
+        details.setOrderId(order.getOrderId().toString());
+        details.setCreatedAt(order.getCreatedAt());
+        details.setUpdatedAt(order.getUpdatedAt());
+        details.setStatus(order.getStatus());
+        details.setTotalAmount(order.getTotalAmount());
+        details.setTotalItems(order.getTotalItems());
+        if (order.getPayment() != null) {
+
+            details.setPaymentId(order.getPayment().getPaymentId().toString());
+        }
+        details.setItems(items);
+
+        return details;
     }
 }

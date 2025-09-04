@@ -2,6 +2,7 @@ package com.priyanshu.e_commerce_v2.entity.order;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,8 +26,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -53,7 +52,7 @@ public class Orders {
     LocalDateTime updatedAt;
 
     @Enumerated(value = EnumType.STRING)
-    OrderStatus status;
+    OrderStatus status = OrderStatus.PENDING;
 
     BigDecimal totalAmount;
 
@@ -63,18 +62,11 @@ public class Orders {
     @JoinColumn(name = "user_id")
     Users user;
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    List<OrderItem> products;
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    List<OrderItem> orderItems = new ArrayList<>();
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "payment_id")
-    Payment payment;
-
-    @PrePersist
-    @PreUpdate
-    private void fieldUpdates() {
-        this.totalItems = products.stream().mapToInt(OrderItem::getQuantity).sum();
-        this.totalAmount = products.stream().map(x -> x.getTotalPrice()).reduce(BigDecimal.ZERO, BigDecimal::add);
-    }
+    Payment payment = null;
 
 }

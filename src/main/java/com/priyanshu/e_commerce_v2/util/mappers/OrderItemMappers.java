@@ -1,5 +1,7 @@
 package com.priyanshu.e_commerce_v2.util.mappers;
 
+import java.math.BigDecimal;
+
 import org.springframework.stereotype.Component;
 
 import com.priyanshu.e_commerce_v2.dto.orderItem.OrderItemResponse;
@@ -16,7 +18,8 @@ public class OrderItemMappers {
         orderItem.setPricePerUnit(product.getPrice());
         orderItem.setProduct(product);
         orderItem.setQuantity(quantity);
-
+        orderItem.setTotalPrice(BigDecimal.valueOf(quantity).multiply(product.getPrice()));
+        product.getOrderItems().add(orderItem);
         return orderItem;
     }
 

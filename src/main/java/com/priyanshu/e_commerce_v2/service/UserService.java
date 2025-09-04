@@ -50,8 +50,13 @@ public class UserService {
 
         Users user = findUserById(userId);
 
-        user.setEmail(newDetails.getEmail());
-        user.setName(newDetails.getName());
+        if (newDetails.getEmail() != null) {
+            user.setEmail(newDetails.getEmail());
+        }
+
+        if (newDetails.getName() != null) {
+            user.setName(newDetails.getName());
+        }
 
         user = userRepository.save(user);
 
