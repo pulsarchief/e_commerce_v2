@@ -40,7 +40,7 @@ public class Orders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    Long dbId;
 
     @Column(nullable = false, unique = true, updatable = false)
     UUID orderId = UUID.randomUUID();

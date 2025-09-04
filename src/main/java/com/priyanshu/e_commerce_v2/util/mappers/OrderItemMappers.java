@@ -19,7 +19,10 @@ public class OrderItemMappers {
         orderItem.setProduct(product);
         orderItem.setQuantity(quantity);
         orderItem.setTotalPrice(BigDecimal.valueOf(quantity).multiply(product.getPrice()));
+
         product.getOrderItems().add(orderItem);
+        product.setStock(product.getStock() - quantity);
+
         return orderItem;
     }
 

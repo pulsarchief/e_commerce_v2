@@ -2,6 +2,7 @@ package com.priyanshu.e_commerce_v2.repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,9 +12,19 @@ import com.priyanshu.e_commerce_v2.entity.order.Orders;
 
 public interface OrderRepository extends JpaRepository<Orders, Long>, JpaSpecificationExecutor<Orders> {
 
-    @EntityGraph(attributePaths = { "payment", "products", "user" })
+    @EntityGraph(attributePaths = { "payment", "orderItems", "user" })
     List<Orders> findTop3WithDetailsByUserIdOrderByCreatedAtDesc(Long userId);
 
-    @EntityGraph(attributePaths = { "payment", "products", "user" })
-    Optional<Orders> findWithDetailsById(Long orderId);
+    @EntityGraph(attributePaths = { "payment", "orderItems", "user" })
+    Optional<Orders> findWithDetailsByDbId(Long dbId);
+
+    @EntityGraph(attributePaths = { "payment", "orderItems", "user" })
+    List<Orders> findAllByUserId(Long userId);
+
+    @EntityGraph(attributePaths = { "payment", "orderItems", "user" })
+    Optional<Orders> findWithDetailsByOrderId(UUID orderId);
+
+    @Override
+    @EntityGraph(attributePaths = { "payment", "orderItems", "user" })
+    List<Orders> findAll();
 }

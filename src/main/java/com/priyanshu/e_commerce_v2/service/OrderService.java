@@ -1,8 +1,8 @@
 package com.priyanshu.e_commerce_v2.service;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -17,6 +17,7 @@ import com.priyanshu.e_commerce_v2.exception.ProductNotFoundException;
 import com.priyanshu.e_commerce_v2.repository.OrderRepository;
 import com.priyanshu.e_commerce_v2.repository.ProductRepository;
 import com.priyanshu.e_commerce_v2.util.mappers.OrderItemMappers;
+import com.priyanshu.e_commerce_v2.util.mappers.OrderMappers;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -30,10 +31,17 @@ public class OrderService {
     private final UserService userService;
     private final ProductRepository productRepository;
     private final OrderItemMappers orderItemMappers;
+    private final OrderMappers orderMappers;
 
     public List<Orders> findTop3ForUser(Long userId) {
 
         return orderRepository.findTop3WithDetailsByUserIdOrderByCreatedAtDesc(userId);
+
+    }
+
+    public List<Orders> findAllOrdersForUser(Long userId) {
+
+        return orderRepository.findAllByUserId(userId);
 
     }
 
@@ -53,26 +61,26 @@ public class OrderService {
             }
 
             items.add(orderItemMappers.toItem(item.getQuantity(), product));
-            product.setStock(product.getStock() - item.getQuantity());
 
             productRepository.save(product);
         }
 
-        Orders order = new Orders();
-        order.setOrderItems(items);
-        order.setTotalItems(
-                order.getOrderItems().stream().map(x -> x.getQuantity()).mapToInt(x -> Integer.valueOf(x)).sum());
-        order.setTotalAmount(
-                order.getOrderItems().stream().map(x -> x.getTotalPrice()).reduce(BigDecimal.ZERO, BigDecimal::add));
-        order.setPayment(null);
-        order.setUser(user);
+        Orders order = orderMappers.toOrder(items, user);
 
-        return getOrder(orderRepository.save(order).getId());
+        return getOrder(orderRepository.save(order).getDbId());
     }
 
-    public Orders getOrder(Long orderId) {
-        return orderRepository.findWithDetailsById(orderId)
+    public Orders getOrder(Long dbId) {
+        return orderRepository.findWithDetailsByDbId(dbId)
+                .orElseThrow(() -> new OrderNotFoundException("Order with" + dbId + " id not found"));
+    }
+
+    public Orders getOrder(UUID orderId) {
+        return orderRepository.findWithDetailsByOrderId(orderId)
                 .orElseThrow(() -> new OrderNotFoundException("Order with" + orderId + " id not found"));
     }
 
+    public List<Orders> getAllOrders() {
+        return orderRepository.findAll();
+    }
 }

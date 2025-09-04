@@ -1,6 +1,7 @@
 package com.priyanshu.e_commerce_v2.controllers.order;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.priyanshu.e_commerce_v2.dto.order.OrderDetailedResponse;
+import com.priyanshu.e_commerce_v2.dto.order.OrderSummaryResponse;
 import com.priyanshu.e_commerce_v2.dto.orderItem.OrderItemRequest;
 import com.priyanshu.e_commerce_v2.dto.orderItem.OrderItemResponse;
 import com.priyanshu.e_commerce_v2.entity.order.Orders;
@@ -39,7 +41,8 @@ public class OrderController {
             @RequestBody @Valid List<OrderItemRequest> items) {
 
         Orders order = orderService.addOrder(userDetails.getId(), items);
-        List<OrderItemResponse> itemResponse = order.getOrderItems().stream().map(x -> orderItemMappers.toItemResponse(x))
+        List<OrderItemResponse> itemResponse = order.getOrderItems().stream()
+                .map(x -> orderItemMappers.toItemResponse(x))
                 .toList();
         return new ResponseEntity<>(orderMappers.toOrderDetailedResponse(order, itemResponse), HttpStatus.CREATED);
 
@@ -47,7 +50,7 @@ public class OrderController {
 
     @GetMapping("/{orderId}")
     public ResponseEntity<OrderDetailedResponse> getOrder(@AuthenticationPrincipal CustomUserDetails userDetails,
-            @PathVariable Long orderId) {
+            @PathVariable UUID orderId) {
 
         Orders order = orderService.getOrder(orderId);
 
@@ -55,9 +58,21 @@ public class OrderController {
             throw new UnAuthorizedAccessException("Unauthorized Access");
         }
 
-        List<OrderItemResponse> itemResponse = order.getOrderItems().stream().map(x -> orderItemMappers.toItemResponse(x))
+        List<OrderItemResponse> itemResponse = order.getOrderItems().stream()
+                .map(x -> orderItemMappers.toItemResponse(x))
                 .toList();
 
         return new ResponseEntity<>(orderMappers.toOrderDetailedResponse(order, itemResponse), HttpStatus.OK);
+    }
+
+    @GetMapping("")
+    public ResponseEntity<List<OrderSummaryResponse>> getAllOrders(
+            @AuthenticationPrincipal CustomUserDetails userDetails) {
+
+        List<OrderSummaryResponse> userOrders = orderService.findAllOrdersForUser(userDetails.getId()).stream()
+                .map(x -> orderMappers.toOrderSummaryResponse(x)).toList();
+
+        return new ResponseEntity<>(userOrders, HttpStatus.OK);
+
     }
 }
