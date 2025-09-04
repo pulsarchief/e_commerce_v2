@@ -20,6 +20,10 @@ public class UserRegistrationRequest {
     @Email(message = "Please give a valid email")
     String email;
 
+    @NotBlank(message = "Name cannot be blank")
+    @Size(min = 5, max = 20)
+    String name;
+
     @NotBlank(message = "Password cannot be blank")
     @Size(min = 4, max = 16, message = "Password size must be between 4 and 16 ")
     String password;

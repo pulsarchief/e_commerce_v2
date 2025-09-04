@@ -42,6 +42,8 @@ public class Users {
     @Column(unique = true)
     String email;
 
+    String name;
+
     String password;
 
     @Enumerated(value = EnumType.STRING)

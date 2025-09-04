@@ -18,6 +18,7 @@ import com.priyanshu.e_commerce_v2.security.CustomUserDetails;
 import com.priyanshu.e_commerce_v2.service.AuthService;
 
 import jakarta.annotation.security.PermitAll;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -29,7 +30,7 @@ public class AuthController {
 
     @PostMapping("/register")
     @PermitAll
-    public ResponseEntity<UserRegistrationResponse> register(@RequestBody UserRegistrationRequest request) {
+    public ResponseEntity<UserRegistrationResponse> register(@RequestBody @Valid UserRegistrationRequest request) {
 
         UserRegistrationResponse response = authService.registerUser(request);
 
@@ -38,7 +39,7 @@ public class AuthController {
 
     @PostMapping("/login")
     @PermitAll
-    public ResponseEntity<UserLoginResponse> login(@RequestBody UserLoginRequest request) {
+    public ResponseEntity<UserLoginResponse> login(@RequestBody @Valid UserLoginRequest request) {
 
         UserLoginResponse response = authService.login(request);
 

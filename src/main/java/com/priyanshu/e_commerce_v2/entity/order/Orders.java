@@ -55,7 +55,7 @@ public class Orders {
     @Enumerated(value = EnumType.STRING)
     OrderStatus status;
 
-    BigDecimal price;
+    BigDecimal totalAmount;
 
     Integer totalItems;
 
@@ -74,7 +74,7 @@ public class Orders {
     @PreUpdate
     private void fieldUpdates() {
         this.totalItems = products.stream().mapToInt(OrderItem::getQuantity).sum();
-        this.price = products.stream().map(x -> x.getTotalPrice()).reduce(BigDecimal.ZERO, BigDecimal::add);
+        this.totalAmount = products.stream().map(x -> x.getTotalPrice()).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
 }

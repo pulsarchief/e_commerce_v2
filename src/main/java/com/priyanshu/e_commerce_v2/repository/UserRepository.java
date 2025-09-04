@@ -14,4 +14,8 @@ public interface UserRepository extends JpaRepository<Users, Long>, JpaSpecifica
 
     @EntityGraph(attributePaths = { "orders", "userImage" })
     Optional<Users> findWithDetailsById(Long id);
+
+    boolean existsByUsername(String username);
+
+    boolean existsByEmail(String email);
 }

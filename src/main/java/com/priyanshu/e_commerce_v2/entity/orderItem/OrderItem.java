@@ -40,7 +40,7 @@ public class OrderItem {
 
     BigDecimal pricePerUnit;
 
-    int quantity;
+    Integer quantity;
 
     BigDecimal totalPrice;
 

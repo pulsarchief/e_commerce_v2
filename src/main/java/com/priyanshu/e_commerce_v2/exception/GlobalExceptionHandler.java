@@ -47,4 +47,14 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<ErrorResponse>(response, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(DuplicateCredentialsException.class)
+    public ResponseEntity<ErrorResponse> handleDuplicateCredentialsException(DuplicateCredentialsException exception,
+            HttpServletRequest request) {
+
+        ErrorResponse response = responseMappers.toErrorResponse(HttpStatus.BAD_REQUEST, exception.getMessage(),
+                request.getRequestURI());
+
+        return new ResponseEntity<ErrorResponse>(response, HttpStatus.BAD_REQUEST);
+    }
+
 }
