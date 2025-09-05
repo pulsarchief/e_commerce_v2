@@ -87,14 +87,21 @@ public class OrderMappers {
     public Orders toOrder(List<OrderItem> items, Users user) {
 
         Orders order = new Orders();
+
+        for (OrderItem orderItem : items) {
+            orderItem.setOrder(order);
+        }
+
         order.setOrderItems(items);
+
         order.setTotalItems(
-                order.getOrderItems().stream().map(x -> x.getQuantity()).mapToInt(x -> Integer.valueOf(x)).sum());
+                items.stream().map(x -> x.getQuantity()).mapToInt(x -> Integer.valueOf(x)).sum());
         order.setTotalAmount(
-                order.getOrderItems().stream().map(x -> x.getTotalPrice()).reduce(BigDecimal.ZERO, BigDecimal::add));
+                items.stream().map(x -> x.getTotalPrice()).reduce(BigDecimal.ZERO, BigDecimal::add));
+
         order.setPayment(null);
         order.setUser(user);
-        
+
         return order;
     }
 }

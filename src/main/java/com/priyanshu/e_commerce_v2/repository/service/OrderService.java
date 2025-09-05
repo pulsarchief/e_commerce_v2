@@ -1,4 +1,4 @@
-package com.priyanshu.e_commerce_v2.service;
+package com.priyanshu.e_commerce_v2.repository.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +53,7 @@ public class OrderService {
 
         for (OrderItemRequest item : productList) {
 
-            Product product = productRepository.findById(item.getProductId())
+            Product product = productRepository.findByIdAndActiveTrue(item.getProductId())
                     .orElseThrow(() -> new ProductNotFoundException("Product Not Found"));
 
             if (product.getStock() < item.getQuantity()) {

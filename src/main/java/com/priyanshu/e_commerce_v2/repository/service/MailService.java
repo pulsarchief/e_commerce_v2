@@ -1,4 +1,4 @@
-package com.priyanshu.e_commerce_v2.service;
+package com.priyanshu.e_commerce_v2.repository.service;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;

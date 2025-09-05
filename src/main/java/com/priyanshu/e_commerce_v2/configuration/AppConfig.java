@@ -35,4 +35,26 @@ public class AppConfig {
             }
         };
     }
+    @Bean
+    public CommandLineRunner addDefaultUser(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        return args -> {
+
+            String username = "priyanshu";
+            String email = "priyanshu@gmail.com";
+
+            if (!userRepository.existsByUsername(username)) {
+
+                Users user = new Users();
+
+                user.setUsername(username);
+                user.setEmail(email);
+                user.setPassword(passwordEncoder.encode("priyanshu"));
+                user.setRole(UserRole.USER);
+                user.setEnabled(true);
+                user.setName("priyanshu");
+
+                userRepository.save(user);
+            }
+        };
+    }
 }

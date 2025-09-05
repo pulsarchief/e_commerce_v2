@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.priyanshu.e_commerce_v2.dto.order.OrderSummaryResponse;
 import com.priyanshu.e_commerce_v2.dto.user.UserProfileUpdate;
 import com.priyanshu.e_commerce_v2.dto.user.UserResponse;
+import com.priyanshu.e_commerce_v2.repository.service.OrderService;
+import com.priyanshu.e_commerce_v2.repository.service.UserService;
 import com.priyanshu.e_commerce_v2.security.CustomUserDetails;
-import com.priyanshu.e_commerce_v2.service.OrderService;
-import com.priyanshu.e_commerce_v2.service.UserService;
 import com.priyanshu.e_commerce_v2.util.mappers.OrderMappers;
 import com.priyanshu.e_commerce_v2.util.mappers.UserMappers;
 

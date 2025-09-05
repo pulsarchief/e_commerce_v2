@@ -1,4 +1,4 @@
-package com.priyanshu.e_commerce_v2.service;
+package com.priyanshu.e_commerce_v2.repository.service;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

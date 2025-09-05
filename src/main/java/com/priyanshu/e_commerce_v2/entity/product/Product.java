@@ -33,14 +33,14 @@ public class Product {
 
     String description;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     List<OrderItem> orderItems;
 
     Boolean active = true;
 
     BigDecimal price;
 
-    Integer stock;
+    Integer stock = 0;
 
     @OneToOne(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     ProductImageRecord productImage = null;
