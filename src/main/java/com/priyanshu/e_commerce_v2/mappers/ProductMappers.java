@@ -1,4 +1,4 @@
-package com.priyanshu.e_commerce_v2.util.mappers;
+package com.priyanshu.e_commerce_v2.mappers;
 
 import org.springframework.stereotype.Component;
 

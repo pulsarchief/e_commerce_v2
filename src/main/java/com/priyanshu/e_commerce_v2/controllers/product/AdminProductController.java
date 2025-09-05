@@ -16,8 +16,8 @@ import com.priyanshu.e_commerce_v2.dto.product.AdminProductResponse;
 import com.priyanshu.e_commerce_v2.dto.product.ProductEntry;
 import com.priyanshu.e_commerce_v2.dto.product.ProductUpdate;
 import com.priyanshu.e_commerce_v2.entity.product.Product;
-import com.priyanshu.e_commerce_v2.repository.service.ProductService;
-import com.priyanshu.e_commerce_v2.util.mappers.ProductMappers;
+import com.priyanshu.e_commerce_v2.mappers.ProductMappers;
+import com.priyanshu.e_commerce_v2.service.ProductService;
 
 import lombok.RequiredArgsConstructor;
 

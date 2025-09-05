@@ -1,4 +1,4 @@
-package com.priyanshu.e_commerce_v2.util.mappers;
+package com.priyanshu.e_commerce_v2.mappers;
 
 import java.util.List;
 
@@ -11,10 +11,7 @@ import com.priyanshu.e_commerce_v2.dto.user.AdminUserResponse;
 import com.priyanshu.e_commerce_v2.dto.user.UserResponse;
 import com.priyanshu.e_commerce_v2.entity.user.Users;
 
-import lombok.RequiredArgsConstructor;
-
 @Component
-@RequiredArgsConstructor
 public class UserMappers {
 
     public Users toUser(UserRegistrationRequest request) {

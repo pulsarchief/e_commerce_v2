@@ -14,8 +14,8 @@ import com.priyanshu.e_commerce_v2.dto.auth.login.UserLoginResponse;
 import com.priyanshu.e_commerce_v2.dto.auth.passwordReset.PasswordResetRequest;
 import com.priyanshu.e_commerce_v2.dto.auth.registration.UserRegistrationRequest;
 import com.priyanshu.e_commerce_v2.dto.auth.registration.UserRegistrationResponse;
-import com.priyanshu.e_commerce_v2.repository.service.AuthService;
 import com.priyanshu.e_commerce_v2.security.CustomUserDetails;
+import com.priyanshu.e_commerce_v2.service.AuthService;
 
 import jakarta.annotation.security.PermitAll;
 import jakarta.validation.Valid;

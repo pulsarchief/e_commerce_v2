@@ -1,4 +1,4 @@
-package com.priyanshu.e_commerce_v2.repository.service;
+package com.priyanshu.e_commerce_v2.service;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,9 +13,9 @@ import com.priyanshu.e_commerce_v2.dto.auth.registration.UserRegistrationRequest
 import com.priyanshu.e_commerce_v2.dto.auth.registration.UserRegistrationResponse;
 import com.priyanshu.e_commerce_v2.entity.user.Users;
 import com.priyanshu.e_commerce_v2.exception.PasswordMismatchException;
+import com.priyanshu.e_commerce_v2.mappers.UserMappers;
 import com.priyanshu.e_commerce_v2.security.CustomUserDetails;
 import com.priyanshu.e_commerce_v2.security.jwt.JwtService;
-import com.priyanshu.e_commerce_v2.util.mappers.UserMappers;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

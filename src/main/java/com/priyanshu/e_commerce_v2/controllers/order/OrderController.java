@@ -19,10 +19,10 @@ import com.priyanshu.e_commerce_v2.dto.orderItem.OrderItemRequest;
 import com.priyanshu.e_commerce_v2.dto.orderItem.OrderItemResponse;
 import com.priyanshu.e_commerce_v2.entity.order.Orders;
 import com.priyanshu.e_commerce_v2.exception.UnAuthorizedAccessException;
-import com.priyanshu.e_commerce_v2.repository.service.OrderService;
+import com.priyanshu.e_commerce_v2.mappers.OrderItemMappers;
+import com.priyanshu.e_commerce_v2.mappers.OrderMappers;
 import com.priyanshu.e_commerce_v2.security.CustomUserDetails;
-import com.priyanshu.e_commerce_v2.util.mappers.OrderItemMappers;
-import com.priyanshu.e_commerce_v2.util.mappers.OrderMappers;
+import com.priyanshu.e_commerce_v2.service.OrderService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

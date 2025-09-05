@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.priyanshu.e_commerce_v2.dto.exception.ErrorResponse;
-import com.priyanshu.e_commerce_v2.util.mappers.ErrorResponseMappers;
+import com.priyanshu.e_commerce_v2.mappers.ErrorResponseMappers;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

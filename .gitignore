@@ -32,7 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 .env
-src/main/resources/data.sql
-src/main/resources/application.properties
-src/main/resources/application.properties
-src/test/java/com/priyanshu/e_commerce_v2/data.sql
+*.sql

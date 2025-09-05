@@ -1,4 +1,4 @@
-package com.priyanshu.e_commerce_v2.repository.service;
+package com.priyanshu.e_commerce_v2.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +14,10 @@ import com.priyanshu.e_commerce_v2.entity.user.Users;
 import com.priyanshu.e_commerce_v2.exception.InsufficientQuantityException;
 import com.priyanshu.e_commerce_v2.exception.OrderNotFoundException;
 import com.priyanshu.e_commerce_v2.exception.ProductNotFoundException;
+import com.priyanshu.e_commerce_v2.mappers.OrderItemMappers;
+import com.priyanshu.e_commerce_v2.mappers.OrderMappers;
 import com.priyanshu.e_commerce_v2.repository.OrderRepository;
 import com.priyanshu.e_commerce_v2.repository.ProductRepository;
-import com.priyanshu.e_commerce_v2.util.mappers.OrderItemMappers;
-import com.priyanshu.e_commerce_v2.util.mappers.OrderMappers;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

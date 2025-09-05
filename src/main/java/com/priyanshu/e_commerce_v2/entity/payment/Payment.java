@@ -9,6 +9,8 @@ import com.priyanshu.e_commerce_v2.entity.order.Orders;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -36,10 +38,12 @@ public class Payment {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "payment")
     Orders order;
 
-    PaymentMode mode;
+    @Enumerated(value = EnumType.STRING)
+    PaymentMode mode = PaymentMode.ONLINE;
 
     @CreationTimestamp
     LocalDateTime paymentTime;
 
+    @Enumerated(value = EnumType.STRING)
     PaymentStatus status;
 }

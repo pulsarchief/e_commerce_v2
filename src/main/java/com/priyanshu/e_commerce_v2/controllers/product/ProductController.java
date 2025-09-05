@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.priyanshu.e_commerce_v2.dto.product.ProductResponse;
-import com.priyanshu.e_commerce_v2.repository.service.ProductService;
-import com.priyanshu.e_commerce_v2.util.mappers.ProductMappers;
+import com.priyanshu.e_commerce_v2.mappers.ProductMappers;
+import com.priyanshu.e_commerce_v2.service.ProductService;
 
 import lombok.RequiredArgsConstructor;
 

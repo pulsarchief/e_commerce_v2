@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.priyanshu.e_commerce_v2.dto.order.AdminOrderSummaryResponse;
 import com.priyanshu.e_commerce_v2.dto.user.AdminUserResponse;
 import com.priyanshu.e_commerce_v2.dto.user.UserProfileUpdate;
-import com.priyanshu.e_commerce_v2.repository.service.OrderService;
-import com.priyanshu.e_commerce_v2.repository.service.UserService;
-import com.priyanshu.e_commerce_v2.util.mappers.OrderMappers;
-import com.priyanshu.e_commerce_v2.util.mappers.UserMappers;
+import com.priyanshu.e_commerce_v2.mappers.OrderMappers;
+import com.priyanshu.e_commerce_v2.mappers.UserMappers;
+import com.priyanshu.e_commerce_v2.service.OrderService;
+import com.priyanshu.e_commerce_v2.service.UserService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

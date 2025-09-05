@@ -1,4 +1,4 @@
-package com.priyanshu.e_commerce_v2.repository.service;
+package com.priyanshu.e_commerce_v2.service;
 
 import org.springframework.stereotype.Service;
 
