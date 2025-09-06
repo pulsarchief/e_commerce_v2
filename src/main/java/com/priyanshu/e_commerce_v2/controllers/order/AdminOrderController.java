@@ -1,10 +1,12 @@
 package com.priyanshu.e_commerce_v2.controllers.order;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,12 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.priyanshu.e_commerce_v2.dto.order.AdminOrderDetailedResponse;
 import com.priyanshu.e_commerce_v2.dto.order.AdminOrderSummaryResponse;
+import com.priyanshu.e_commerce_v2.dto.order.OrderDetailedResponse;
 import com.priyanshu.e_commerce_v2.dto.orderItem.OrderItemResponse;
+import com.priyanshu.e_commerce_v2.entity.order.OrderStatus;
 import com.priyanshu.e_commerce_v2.entity.order.Orders;
 import com.priyanshu.e_commerce_v2.mappers.OrderItemMappers;
 import com.priyanshu.e_commerce_v2.mappers.OrderMappers;
 import com.priyanshu.e_commerce_v2.security.CustomUserDetails;
 import com.priyanshu.e_commerce_v2.service.OrderService;
+import com.priyanshu.e_commerce_v2.service.OrderStateService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,6 +34,7 @@ public class AdminOrderController {
     private final OrderService orderService;
     private final OrderItemMappers orderItemMappers;
     private final OrderMappers orderMappers;
+    private final OrderStateService orderStateService;
 
     @GetMapping("/{dbId}")
     public ResponseEntity<AdminOrderDetailedResponse> getOrder(@PathVariable Long dbId) {
@@ -60,6 +66,21 @@ public class AdminOrderController {
                 .map(x -> orderMappers.toAdminOrderSummaryResponse(x)).toList();
 
         return new ResponseEntity<>(userOrders, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{orderId}")
+    public ResponseEntity<OrderDetailedResponse> cancelOrder(
+            @PathVariable UUID orderId) {
+
+        Orders order = orderService.getOrder(orderId);
+
+        orderStateService.changeStatus(order, OrderStatus.CANCELLED);
+
+        List<OrderItemResponse> itemResponse = order.getOrderItems().stream()
+                .map(x -> orderItemMappers.toItemResponse(x))
+                .toList();
+
+        return new ResponseEntity<>(orderMappers.toOrderDetailedResponse(order, itemResponse), HttpStatus.OK);
     }
 
 }

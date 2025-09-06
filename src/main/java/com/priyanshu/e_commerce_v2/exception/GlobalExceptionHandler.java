@@ -91,6 +91,36 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<ErrorResponse>(response, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(PaymentNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handlePaymentNotFoundException(PaymentNotFoundException exception,
+            HttpServletRequest request) {
+
+        ErrorResponse response = responseMappers.toErrorResponse(HttpStatus.NOT_FOUND, exception.getMessage(),
+                request.getRequestURI());
+
+        return new ResponseEntity<ErrorResponse>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(OrderAlreadyPaidException.class)
+    public ResponseEntity<ErrorResponse> handleOrderAlreadyPaidException(OrderAlreadyPaidException exception,
+            HttpServletRequest request) {
+
+        ErrorResponse response = responseMappers.toErrorResponse(HttpStatus.BAD_REQUEST, exception.getMessage(),
+                request.getRequestURI());
+
+        return new ResponseEntity<ErrorResponse>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidOrderStatusTransition.class)
+    public ResponseEntity<ErrorResponse> handleInvalidOrderStatusTransition(InvalidOrderStatusTransition exception,
+            HttpServletRequest request) {
+
+        ErrorResponse response = responseMappers.toErrorResponse(HttpStatus.BAD_REQUEST, exception.getMessage(),
+                request.getRequestURI());
+
+        return new ResponseEntity<ErrorResponse>(response, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(UnAuthorizedAccessException.class)
     public ResponseEntity<ErrorResponse> handleUnAuthorizedAccessException(UnAuthorizedAccessException exception,
             HttpServletRequest request) {
