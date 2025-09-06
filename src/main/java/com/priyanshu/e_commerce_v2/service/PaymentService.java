@@ -31,7 +31,8 @@ public class PaymentService {
         Orders order = orderService.getOrder(orderId);
 
         if (order.getStatus() != OrderStatus.PENDING) {
-            throw new OrderAlreadyPaidException("Order " + orderId + " has already been paid.");
+            throw new OrderAlreadyPaidException(
+                    "Cannot make payment for " + orderId + " Order is " + order.getStatus());
         }
 
         int random = (int) (Math.random() * 10 + 1);

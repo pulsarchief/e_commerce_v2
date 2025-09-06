@@ -22,7 +22,7 @@ public class ProductMappers {
         String availability = "";
         if (product.getStock() == 0) {
             availability = "Out of stock";
-        } else if (product.getStock() < 10) {
+        } else if (product.getStock() < 6) {
 
             availability = "Low stock";
         } else {

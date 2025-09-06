@@ -35,12 +35,13 @@ public class AppConfig {
             }
         };
     }
+
     @Bean
     public CommandLineRunner addDefaultUser(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         return args -> {
 
             String username = "priyanshu";
-            String email = "priyanshu@gmail.com";
+            String email = "p9727807@gmail.com";
 
             if (!userRepository.existsByUsername(username)) {
 

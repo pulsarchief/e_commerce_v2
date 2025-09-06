@@ -21,6 +21,7 @@ public class OrderStateService {
     private final ProductRepository productRepository;
     private final ProductService productService;
     private final OrderRepository orderRepository;
+    private final MailService mailService;
 
     public void changeStatus(Orders order, OrderStatus newStatus) {
 
@@ -35,7 +36,12 @@ public class OrderStateService {
         }
 
         order.setStatus(newStatus);
+
         orderRepository.save(order);
+
+        String message = "Your xyz order , with id " + order.getOrderId() + " has been " + order.getStatus();
+        mailService.sendMail(order.getUser().getEmail(), "Your Order Status Changed", message);
+
     }
 
     public boolean validTransition(OrderStatus oldStatus, OrderStatus newStatus) {
